@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var cameraPermission: ActivityResultLauncher<String>
     lateinit var storagePermission: ActivityResultLauncher<String>
     lateinit var cameraLauncher: ActivityResultLauncher<Uri>
+    lateinit var galleryLauncher: ActivityResultLauncher<String>
 
     val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()){ uri ->
+            binding.imgV.setImageURI(uri)
+        }
+
         storagePermission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     }
 
@@ -59,11 +64,18 @@ class MainActivity : AppCompatActivity() {
         binding.btnCamera.setOnClickListener {
             cameraPermission.launch(Manifest.permission.CAMERA)
         }
+        binding.btnGallery.setOnClickListener {
+            openGallery()
+        }
     }
 
     fun openCamera(){
         val photoFile = File.createTempFile("IMG_", ".jpg", getExternalFilesDir(Environment.DIRECTORY_PICTURES))
         photoUri = FileProvider.getUriForFile(this, "${packageName}.provider", photoFile)
         cameraLauncher.launch(photoUri)
+    }
+
+    fun openGallery(){
+        galleryLauncher.launch("image/*")
     }
 }

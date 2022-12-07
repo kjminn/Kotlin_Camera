@@ -10,22 +10,28 @@
         android:id="@+id/btnCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginBottom="101dp"
         android:text="카메라"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgV" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imgV"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="379dp"
         android:layout_marginTop="71dp"
-        android:layout_marginBottom="133dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCamera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="갤러리"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnCamera"
+        app:layout_constraintStart_toEndOf="@+id/btnCamera" />
 </androidx.constraintlayout.widget.ConstraintLayout>
